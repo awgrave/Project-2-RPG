@@ -11,8 +11,8 @@ GITHUB LINK:
 *insert link to repo here*
 '''
 
-import pickle #used for saving game data and loading from save files
-import os #used for wiping saved data for new playthroughs
+#import pickle #used for saving game data and loading from save files
+#import os #used for wiping saved data for new playthroughs
 
 Notebook_file = 'Notebook.txt' #uses the variable Notebook_file to reference the .txt
 Save_game_data = 'savegame.dat' #uses the variable Notebook_file to reference the .dat
