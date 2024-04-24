@@ -132,8 +132,8 @@ def main():
     notebook = Notebook(Notebook_file)
 
     #makes a title to the notebook at the start of every game.
-    notebook_entry1 = 'This is the Notebook of Nathaniel Damascus Brooks:\n'
-    notebook.write_entry(notebook_entry1)
+    notebook_entry_for_intro = 'This is the Notebook of Nathaniel Damascus Brooks:\n'
+    notebook.write_entry(notebook_entry_for_intro)
 
     #assigns each location with their respective description
     game_map.add_location(Locations("Outside", "INSERT DESCRIPTION", ['Family Room']))
@@ -169,12 +169,14 @@ def main():
             elif exit_choice == "write notes": # if player wants to write in notebook
                 notebook_entry = input("Write something in your notebook: ")
                 notebook.write_entry(notebook_entry)
+                append_to_log(notebook_entry)
                 print("Entry added to notebook.")
-                continue  # Skip the rest of the loop iteration
+                append_to_log('Entry added to notebook.')
+                continue  # Skip the rest of the loop 
 
             elif exit_choice == "read notes": # if player wants to read notebook
                 notebook.read_entries()
-                continue  # Skip the rest of the loop iteration
+                continue  # Skip the rest of the loop 
 
             elif exit_choice not in map(str.lower, current_room.get_exits()):
                 raise ExitNotFoundError(exit_choice)
