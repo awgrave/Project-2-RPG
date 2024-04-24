@@ -15,9 +15,15 @@ GITHUB LINK:
 #import os #used for wiping saved data for new playthroughs
 
 Notebook_file = 'Notebook.txt' #uses the variable Notebook_file to reference the .txt
-Save_game_data = 'savegame.dat' #uses the variable Notebook_file to reference the .dat
+#Save_game_data = 'savegame.dat' #uses the variable Notebook_file to reference the .dat
 
-outputStr = "" #set as global in functions -> used for output log
+#Instead of a Save and Load Game Feature, using an output log
+output_log_file = 'output_log.txt' #sets variable for save log feature
+
+# function to append all of the output text to the output log file
+def append_to_log(text):
+    with open(output_log_file, 'a') as log_file:
+        log_file.write(text + '\n')
 
 
 #Creates a custom exception class called ExitNotFoundError and initializes its parameters
@@ -44,15 +50,18 @@ class Notebook:
             with open(self.notebook_file, 'r') as f:
                 entries = f.readlines()
                 if not entries:
-                    str = "Notebook is empty.\n"
-                    outputStr += str
-                    print(str)
+                    print("Notebook is empty.")
+                    append_to_log("Notebook is empty.")
                 else:
                     print("Entries in Notebook:")
+                    append_to_log("Entries in Notebook:")
                     for entry in entries:
                         print(entry.strip())
+                        append_to_log(entry.strip())
+
         except FileNotFoundError:
             print("Notebook file not found.")
+            append_to_log("Notebook file not found.")
 
 #Creates a class named Locations and initializes its parameters
 class Locations:
@@ -100,31 +109,21 @@ class GameMap:
 def main(): 
     #Intro Title Sequence
     print()
-    print('      Silent Suburbia      ')
+    print('       Silent Suburbia     ')
     print('___________________________')
     print()
     print('  Written and Developed by ')
-    print('   Aidan Graves, 4/16/24   ')
+    print('    Aidan Graves, 4/16/24  ')
     print()
     print()
     print()
-    print('Enter "N" to Start a New Game')
-    print('Enter "L" to Load a Saved Game')
+    print('   Enter any key to begin  ')
+    
+    append_to_log('Silent Suburbia')
+    append_to_log('Written and Developed by Aidan Graves, 4/16/24')
+    append_to_log('Enter any key to begin')
 
     user_input = input().upper()
-
-    while user_input not in ["N", "L"]:
-        print('Enter "N" to Start a New Game or "L" to Load a Saved Game')
-        user_input = input().upper()
-
-    #game = Game()
-
-    if user_input == "N":
-        pass
-        #game.start_new_game()
-    elif user_input == "L":
-        pass
-        #game.load_game()
 
     #creates an instance of the GameMap class named game_map
     game_map = GameMap()
@@ -184,6 +183,7 @@ def main():
 
         except ExitNotFoundError as e:
             print(e)
+            append_to_log(str(e))
             bool_to_not_print_entire_thing = False
             
 #runs main
