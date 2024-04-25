@@ -8,7 +8,7 @@ This is the 2nd project for CPSC 1050. The assignment is to create a RPG video g
 a disturbing disappearance in a seemingly normal suburban home. 
 
 GITHUB LINK: 
-*insert link to repo here*
+https://github.com/awgrave/Project-2-RPG
 '''
 
 #import pickle #used for saving game data and loading from save files
@@ -19,6 +19,19 @@ Notebook_file = 'Notebook.txt' #uses the variable Notebook_file to reference the
 
 #Instead of a Save and Load Game Feature, using an output log
 output_log_file = 'output_log.txt' #sets variable for save log feature
+
+
+#functions to make sure output log and notebook are empty at the start of the game:
+# Function to clear the notebook file
+def clear_notebook():
+    with open(Notebook_file, 'w') as f:
+        f.write('')
+
+# Function to clear the output log file
+def clear_output_log():
+    with open(output_log_file, 'w') as f:
+        f.write('')
+
 
 # function to append all of the output text to the output log file
 def append_to_log(text):
@@ -107,6 +120,11 @@ class GameMap:
         return location
 
 def main(): 
+
+    # Clear the notebook and output log files
+    clear_notebook()
+    clear_output_log()
+    
     #Intro Title Sequence
     print()
     print('       Silent Suburbia     ')
@@ -149,14 +167,14 @@ def main():
 
     #initializes bool_to_not_print_entire_thing
     bool_to_not_print_entire_thing = True
-
+    
     #runs until a break happens
     while True:
         #checks that bool_to_not_print_entire_thing is true to print the updated current location
         if bool_to_not_print_entire_thing == True:
             print(current_room)
         #re-initializes bool_to_not_print_entire_thing
-        bool_to_not_print_entire_thing = True
+        bool_to_not_print_entire_thing = False
         print("Please choose an exit: ")
         exit_choice = input().strip().lower()
 
