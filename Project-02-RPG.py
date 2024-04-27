@@ -10,11 +10,10 @@ a disturbing disappearance in a seemingly normal suburban home.
 GITHUB LINK: 
 https://github.com/awgrave/Project-2-RPG
 '''
-##NOT USED:
+## NOT USED:
 #import pickle #used for saving game data and loading from save files
 #import os #used for wiping saved data for new playthroughs
 #Save_game_data = 'savegame.dat' #uses the variable Notebook_file to reference the .dat
-
 
 #Instead of a Save and Load Game Feature, using an output log
 output_log_file = 'output_log.txt' #sets variable for save log feature
