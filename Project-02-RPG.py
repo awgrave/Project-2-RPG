@@ -143,13 +143,12 @@ def main():
     notebook_entry_for_intro = 'This is the Notebook of Nathaniel Damascus Brooks:\n'
     notebook.write_entry(notebook_entry_for_intro)
 
-    # assigns each location with their respective description
+    # assigns each location with their respective description - will be fully utilized past the Beta stage
     game_map.add_location(Locations("Outside", "INSERT DESCRIPTION"))
     game_map.add_location(Locations("Family Room", "INSERT DESCRIPTION"))
     game_map.add_location(Locations("Kitchen", "INSERT DESCRIPTION"))
     game_map.add_location(Locations("Bathroom,", "INSERT DESCRIPTION",))
     game_map.add_location(Locations("Basement", "INSERT DESCRIPTION"))
-    game_map.add_location(Locations("Trophy Locations", "INSERT DESCRIPTION"))
     game_map.add_location(Locations("Bedroom", "INSERT DESCRIPTION"))
 
     # sets current_room to the starter location, being the Bathroom,
@@ -289,21 +288,14 @@ def main():
         append_to_log(Neighbor_dialogue)
 
 
-    # runs loop again
-    while True: ## SECOND LOOP
+        # runs loop again
+    while True:  # SECOND LOOP
         print("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
         append_to_log("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
         action_choice = input().strip().lower()
 
         # try statement containing whether or not the code remains to run, breaks, or has an error
         try:
-            while action_choice == 'No': #if they dont give up
-                print("I waited and knocked again, but still no response. It's getting late, I should probably give up.")
-                append_to_log("I waited and knocked again, but still no response. It's getting late, I should probably give up.")
-                print("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
-                append_to_log("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
-                action_choice = input().strip().lower()
-
             if action_choice == "exit the game":
                 print("Exiting the game. Thanks for playing!")
                 append_to_log("Exiting the game. Thanks for playing!")
@@ -330,9 +322,24 @@ def main():
                     raise ErrorMessage("Invalid input. Please enter 'write' or 'read'.")
                 continue  # Skip the rest of the loop
             
-
             elif action_choice == "no":
-                continue
+                while True:  # Nested loop for 'No' choice
+                    print("I waited and knocked again, but still no response. It's getting late, I should probably give up. Should I?")
+                    append_to_log("I waited and knocked again, but still no response. It's getting late, I should probably give up. Should I?")
+                    print("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
+                    append_to_log("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
+                    inner_action_choice = input().strip().lower()
+                    if inner_action_choice == 'no':
+                        continue  # Continue the nested loop if the choice is 'no'
+                    elif inner_action_choice == 'yes':
+                        break  # Exit the nested loop if the choice is 'yes'
+                    else:
+                        raise ErrorMessage("Invalid input. Please enter 'Yes' or 'No'.")
+                # Break out of the outer loop if the inner loop exits with 'yes'
+                break
+            
+            elif action_choice == "yes":
+                break  # Exit the main loop if the choice is 'Yes'
 
             else:
                 raise ErrorMessage("Invalid input. Please enter 'Yes', 'No', 'Write notes', or 'Read notes'.")
@@ -340,20 +347,22 @@ def main():
         except ErrorMessage as e:
             print(e)
 
+
     ### SECTION 3
     finding_the_keys = '''
-    
+    I finally decided to give up and started walking back to my car. But just as I walked past the white sedan in the driveway,
+    a glimmer of light caught my eye. The street lamp’s glow reflected off a pair of keys sitting on the car’s dash. They looked 
+    ordinary — just a simple keychain with a worn-out leather tag, the car key, and another, regular key. I hesitated. Surely not… 
+    but curiosity gnawed at me. The house behind me held secrets, and those keys might unlock them. My hand trembled as I reached for 
+    the car door. And lo and behold, it swung open with ease, as if inviting me in. The interior smelled of stale air and old upholstery.
+    I grabbed the keys off the dash and examined them in the light of the street lamp, the sun now hiding behind the mountain horizon.
+    FINISH TEXT HERE
         
     '''
-    
-
+    print(finding_the_keys)
+    append_to_log(finding_the_keys)
 
 # runs main
 if __name__ == "__main__":
     main()
 
-'''
-Main text of the game -> to be put in once the actual coding works
-
-
-'''
