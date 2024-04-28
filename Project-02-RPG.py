@@ -526,7 +526,7 @@ def main():
     print()
     print('   Thanks for playing the Beta')
     print('        of Silent Suburbia    ')
-    print('______________________________')
+    print('__________________________________')
     print()
     print('     Written and Developed by ')
     print('       Aidan Graves, 4/16/24  ')
