@@ -19,5 +19,5 @@ Developed by Aidan Graves
 
 Class: CPSC 1050 - Introduction to Python, Clemson University
 
-License
+License:
 This project is licensed under the MIT License. Feel free to use, modify, and distribute it.
