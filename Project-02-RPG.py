@@ -519,8 +519,6 @@ def main():
         except ErrorMessage as e:
             print(e)
 
-
-
     print(using_the_keys)
     append_to_log(using_the_keys)
 
