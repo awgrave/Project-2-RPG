@@ -279,7 +279,7 @@ def main():
     be useful. 
 
     I got out of the car, getting a deep breath of the cool air, and walked up to the 
-    door of the house.
+    door of the house. Should I use the key?
     '''
     #Note Uses a basic Caesar Cipher with a 42 position shift. The key word: apathy, will be used to unlock a door later
     note_message = '''
@@ -471,8 +471,58 @@ def main():
         print(car_search_text)
         append_to_log(car_search_text)
         notebook.write_entry(note_message)
-        print(using_the_keys)
-        append_to_log(using_the_keys)
+
+    while True:  # FOURTH LOOP
+        print("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
+        append_to_log("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
+        action_choice = input().strip().lower()
+
+        # try statement containing whether or not the code remains to run, breaks, or has an error
+        try:
+            if action_choice == "exit the game":
+                print("Exiting the game. Thanks for playing!")
+                append_to_log("Exiting the game. Thanks for playing!")
+                exit(1)
+
+            elif action_choice == "use notebook":  # if player wants to use the notebook
+                print("Would you like to 'write' or 'read' from your notebook?")
+                append_to_log("Would you like to 'write' or 'read' from your notebook?")
+                notebook_action = input().strip().lower()
+
+                if notebook_action == "write":
+                    print("Write something in your notebook: ")
+                    append_to_log("Write something in your notebook: ")
+                    notebook_entry = input().strip().lower()
+                    notebook.write_entry(notebook_entry)
+                    append_to_log(notebook_entry)
+                    print("Entry added to notebook.")
+                    append_to_log('Entry added to notebook.')
+
+                elif notebook_action == "read":
+                    notebook.read_entries()
+                    
+                else:
+                    raise ErrorMessage("Invalid input. Please enter 'write' or 'read'.")
+                continue  # Skip the rest of the loop
+            
+            elif action_choice == "no":
+                print("    I didn't want to, but I knew I had to. This wasn't about a job anymore.")  
+                append_to_log("I didn't want to, but I knew I had to. This wasn't about a job anymore.")
+                break #forces a yes pretty much
+            
+            elif action_choice == "yes":
+                break  # Exit the main loop if the choice is 'Yes'
+
+            else:
+                raise ErrorMessage("Invalid input. Please enter 'Yes', 'No', 'Write notes', or 'Read notes'.")
+                
+        except ErrorMessage as e:
+            print(e)
+
+
+
+    print(using_the_keys)
+    append_to_log(using_the_keys)
 
     ### SECTION 5 - End of Beta
     print()
