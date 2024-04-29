@@ -390,8 +390,8 @@ def main():
                     print("    I waited and knocked again, but still no response. It's getting late") #spaces at start to line up text
                     print("    I should probably give up. Should I?\n")
                     append_to_log("I waited and knocked again, but still no response. It's getting late, I should probably give up. Should I?")
-                    print("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
-                    append_to_log("Please choose an action: 'Yes', 'No', 'Use notebook', or 'Exit the game'")
+                    print("Please choose: 'Yes' or 'No'")
+                    append_to_log("Please choose: 'Yes' or 'No'")
                     inner_action_choice = input().strip().lower()
                     if inner_action_choice == 'no':
                         continue  # Continue the nested loop if the choice is 'no'
